@@ -85,6 +85,8 @@ driver.findElement(By.id("hideLogin")).click();
        Assert.assertEquals(actualIs, expectedMatch);
             Thread.sleep(1000);
 //need to commit
+            System.out.println("commit");
+            //another try
 //        8. Click on the username on the left navigation bar and verify the username on the main window is correct and then click logout.
 //        9. Verify that you are logged out by verifying the URL is:
 //        http://duotify.us-east-2.elasticbeanstalk.com/register.php
