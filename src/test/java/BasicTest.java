@@ -84,7 +84,7 @@ driver.findElement(By.id("hideLogin")).click();
         Thread.sleep(1000);
        Assert.assertEquals(actualIs, expectedMatch);
             Thread.sleep(1000);
-//need to commit
+
             System.out.println("commit");
             //another try
 //        8. Click on the username on the left navigation bar and verify the username on the main window is correct and then click logout.
@@ -94,4 +94,5 @@ driver.findElement(By.id("hideLogin")).click();
 //        11. Verify successful login by verifying that the home page contains the text "You Might Also Like".
 //        12. Log out once again and verify that you are logged out.
     }
+    // pushed
 }
