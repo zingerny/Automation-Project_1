@@ -32,32 +32,43 @@ driver.findElement(By.id("hideLogin")).click();
 
 //        4. Fill out the form with the required info
         WebElement username = driver.findElement(By.name("username"));
-        driver.findElement(By.name("username")).sendKeys("matrix");
+        String user = "matrixxx";
+        driver.findElement(By.name("username")).sendKeys(user);
 
         Thread.sleep(1000);
 
         WebElement firstName = driver.findElement(By.name("firstName"));
-        driver.findElement(By.name("firstName")).sendKeys("Keanu");
+        String fName = "Keanu";
+        driver.findElement(By.name("firstName")).sendKeys(fName);
         Thread.sleep(1000);
 
         WebElement lastName = driver.findElement(By.name("lastName"));
-        driver.findElement(By.name("lastName")).sendKeys("Reeves");
+        String lName = "Reeves";
+        driver.findElement(By.name("lastName")).sendKeys(lName);
         Thread.sleep(1000);
 
         WebElement email = driver.findElement(By.name("email"));
-        driver.findElement(By.name("email")).sendKeys("matrix_kr@yahoo.com");
+
+                String randomEmail ="";
+                  randomEmail += user + fName.charAt(0) + lName.charAt(0) + ((int)(Math.random()*1000))+"@gmail.com";
+
+            System.out.println(randomEmail);
+        driver.findElement(By.name("email")).sendKeys(randomEmail);
         Thread.sleep(1000);
 
         WebElement cfmemail = driver.findElement(By.name("email2"));
-        driver.findElement(By.name("email2")).sendKeys("matrix_kr@yahoo.com");
+        driver.findElement(By.name("email2")).sendKeys(randomEmail);
         Thread.sleep(1000);
 
         WebElement password = driver.findElement(By.name("password"));
-        driver.findElement(By.name("password")).sendKeys("3356Pojmn");
+
+//           String randomPassword = ""+ (char)(int)(Math.random()*1000));
+            String code= RandomPassword.generatePassword();
+        driver.findElement(By.name("password")).sendKeys(code);
         Thread.sleep(1000);
 
         WebElement cfmpassword = driver.findElement(By.name("password2"));
-        driver.findElement(By.name("password2")).sendKeys("3356Pojmn");
+        driver.findElement(By.name("password2")).sendKeys(code);
         Thread.sleep(1000);
 
 //        5. Click on Sign up
