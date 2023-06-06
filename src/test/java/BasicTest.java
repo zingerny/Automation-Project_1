@@ -119,11 +119,12 @@ driver.findElement(By.id("hideLogin")).click();
         String actualUrlLink = driver.getCurrentUrl();
         System.out.println("The current url is: " + actualUrlLink);
 
-        Assert.assertEquals(actualUrl,expectedUrl);
+        Assert.assertEquals(actualUrlLink,expectedUrlIs);
 
 //        10. Login using the same username and password when you signed up.
 
 //        11. Verify successful login by verifying that the home page contains the text "You Might Also Like".
+
 //        12. Log out once again and verify that you are logged out.
     }
 
