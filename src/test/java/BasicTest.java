@@ -88,6 +88,8 @@ driver.findElement(By.id("hideLogin")).click();
             System.out.println("commit");
             //another try
 //        8. Click on the username on the left navigation bar and verify the username on the main window is correct and then click logout.
+
+            System.out.println("github");
 //        9. Verify that you are logged out by verifying the URL is:
 //        http://duotify.us-east-2.elasticbeanstalk.com/register.php
 //        10. Login using the same username and password when you signed up.
