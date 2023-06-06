@@ -32,7 +32,7 @@ driver.findElement(By.id("hideLogin")).click();
 
 //        4. Fill out the form with the required info
         WebElement username = driver.findElement(By.name("username"));
-        String user = "matrixxx";
+        String user = "matrix12";
         driver.findElement(By.name("username")).sendKeys(user);
 
         Thread.sleep(1000);
@@ -93,19 +93,38 @@ driver.findElement(By.id("hideLogin")).click();
         String expectedMatch = "Keanu Reeves";
         String actualIs = driver.findElement(By.id("nameFirstAndLast")).getText();
         Thread.sleep(1000);
-       Assert.assertEquals(actualIs, expectedMatch);
+             Assert.assertEquals(actualIs, expectedMatch);
+            System.out.println("Name has been verified. " );
             Thread.sleep(1000);
 
-            System.out.println("commit");
-            //another try
+
+
 //        8. Click on the username on the left navigation bar and verify the username on the main window is correct and then click logout.
 
-            System.out.println("github");
+            WebElement navItem = driver.findElement(By.id("nameFirstAndLast"));
+            driver.findElement(By.name("navItem")).click();
+            Thread.sleep(1000);
+            WebElement button = driver.findElement(By.id("button"));
+            driver.findElement(By.id("rafael")).click();
+            Thread.sleep(1000);
+
+
 //        9. Verify that you are logged out by verifying the URL is:
 //        http://duotify.us-east-2.elasticbeanstalk.com/register.php
+
+        driver.get(" http://duotify.us-east-2.elasticbeanstalk.com/register.php");
+
+        String expectedUrlIs = "\" http://duotify.us-east-2.elasticbeanstalk.com/register.php\"";
+
+        String actualUrlLink = driver.getCurrentUrl();
+        System.out.println("The current url is: " + actualUrlLink);
+
+        Assert.assertEquals(actualUrl,expectedUrl);
+
 //        10. Login using the same username and password when you signed up.
+
 //        11. Verify successful login by verifying that the home page contains the text "You Might Also Like".
 //        12. Log out once again and verify that you are logged out.
     }
-    // pushed
+
 }

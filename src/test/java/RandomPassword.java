@@ -1,7 +1,7 @@
 public class RandomPassword {
 
     static String randomPassword = "";
-    static char[] specialCharacters = {'$', '@', '!', '@'};
+    static char[] specialCharacters = {'$', '@', '!', '?'};
 
     public static String generatePassword() {
         randomPassword = "";
