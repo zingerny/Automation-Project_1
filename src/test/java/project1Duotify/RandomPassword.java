@@ -1,3 +1,5 @@
+package project1Duotify;
+
 public class RandomPassword {
 
     static String randomPassword = "";

@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="automation-project1-signup-login" />
+        <module name="automation-projects" />
       </profile>
     </annotationProcessing>
   </component>
