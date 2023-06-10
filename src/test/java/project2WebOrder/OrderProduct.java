@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.Random;
@@ -34,20 +35,41 @@ public class OrderProduct {
 //        5. Enter a random product quantity between 1 and 100
 
         Random random = new Random();
-        int randomKey = random.nextInt(100);
-        System.out.println(randomKey);
-        driver.findElement(By.name("ctl00$MainContent$fmwOrder$txtQuantity")).sendKeys(Keys.BACK_SPACE, String.valueOf(randomKey) );
-
+        int randomQty = random.nextInt(100);
+        System.out.println(randomQty);
+        driver.findElement(By.name("ctl00$MainContent$fmwOrder$txtQuantity")).sendKeys(Keys.BACK_SPACE, String.valueOf(randomQty) );
 
 
 
 //        6. Click on Calculate and verify that the Total value is as expected.
+        driver.findElement(By.xpath("//input[@value='Calculate']")).click(); // calculated
+        String actual = driver.findElement(By.name("ctl00$MainContent$fmwOrder$txtTotal")).getText();
+
+
+
 //        Price per unit is 100.  The discount of 8 % is applied to quantities of 10+.
 //        So for example, if the quantity is 8, the Total should be 800.
 //        If the quantity is 20, the Total should be 1840.
 //        If the quantity is 77, the Total should be 7084. And so on.
 //
+        double expected ;
+        int pricePerUnit=100;
+        double discount =0.08;
+
+        if(randomQty >= 10){
+            expected= randomQty*100- randomQty * 100 * discount;
+            System.out.println("  QTY over 10 pcs Total is expected : " + expected);
+        } else {
+            expected=randomQty*pricePerUnit;
+            System.out.println("Qty under 10 pcs, Total is expected : "+String.valueOf(expected));
+        }
+
+        Assert.assertEquals(String.valueOf(actual), expected);
+
+
 //        6. Generate and enter random first name and last name.
+
+
 //        7. Generate and Enter random street address
 //        8. Generate and Enter random city
 //        9. Generate and Enter random state
