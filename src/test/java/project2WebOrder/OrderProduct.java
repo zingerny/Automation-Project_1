@@ -1,6 +1,7 @@
 package project2WebOrder;
 
-import com.github.javafaker.Faker;
+
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +9,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import java.util.Random;
+
 
 public class OrderProduct {
     public static  void main(String[] args) throws InterruptedException {
@@ -50,22 +55,24 @@ public class OrderProduct {
 
 
 //        Price per unit is 100.  The discount of 8 % is applied to quantities of 10+.
-//        So for example, if the quantity is 8, the Total should be 800.
-//        If the quantity is 20, the Total should be 1840.
-//        If the quantity is 77, the Total should be 7084. And so on.
-//
-//        int expected ;
-//        int pricePerUnit=100;
-//        int discount =8;
-//        int actual = Integer.parseInt(driver.findElement(By.name("ctl00$MainContent$fmwOrder$txtTotal")).getText());
-//        if(randomQty >= 10){
-//            expected= randomQty*100- randomQty * 100 * discount/100;
-//            System.out.println("  QTY over 10 pcs Total is expected : " + expected);
-//        } else {
-//            expected=randomQty*pricePerUnit;
-//            System.out.println("Qty under 10 pcs, Total is expected : "+(expected));
-//        }
-//     Assert.assertEquals(actual, expected);
+             //        So for example, if the quantity is 8, the Total should be 800.
+             //        If the quantity is 20, the Total should be 1840.
+              //        If the quantity is 77, the Total should be 7084. And so on.
+
+        int expected  ;
+        int pricePerUnit=100;
+        int discount =8;
+        int actual = Integer.parseInt(driver.findElement(By.name("ctl00$MainContent$fmwOrder$txtTotal")).getAttribute("value"));
+        System.out.println(actual);
+
+        if(randomQty >= 10){
+            expected= randomQty*100- randomQty * 100 * discount/100;
+            System.out.println("  QTY over 10 pcs Total is expected : " + expected);
+        } else {
+            expected=randomQty*pricePerUnit;
+            System.out.println("Qty under 10 pcs, Total is expected : "+(expected));
+        }
+     Assert.assertEquals(expected, actual);
 
 
 //        6. Generate and enter random first name and last name.
@@ -122,10 +129,24 @@ driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox5")).sendKeys(Rand
 
 
 //        13. Enter a valid expiration date (newer than the current date)
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
+       LocalDate currentDate = LocalDate.now();
+       LocalDate expirationDate = currentDate.plusYears(1);
+        String expDate = formatter.format(expirationDate);
+
+
+
+
+driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox1")).sendKeys(expDate);
+
 //        14. Click on Process
+        driver.findElement(By.id("ctl00_MainContent_fmwOrder_InsertButton")).click();
+
 //        15. Verify that “New order has been successfully added” message appeared on the page.
 //        16. Click on View All Orders link.
-//        17. The placed order details appears on the first row of the orders table. Verify that the entire information contained on the row (Name, Product, Quantity, etc) matches the previously entered information in previous steps.
+
+//        17. The placed order details appears on the first row of the orders table. Verify that the entire information contained on the row (Name, Product, Quantity, etc.) matches the previously entered information in previous steps.
 //        18. Log out of the application.
 
 
