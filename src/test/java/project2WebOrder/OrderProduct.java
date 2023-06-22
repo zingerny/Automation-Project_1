@@ -12,6 +12,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import java.util.List;
 import java.util.Random;
 
 
@@ -81,11 +82,14 @@ String fullName = RandomGenerator.generateFakeFullName();
         driver.findElement(By.name("ctl00$MainContent$fmwOrder$txtName")).sendKeys(fullName);
         System.out.println(fullName);
 //        7. Generate and Enter random street address
-        driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox2")).sendKeys(RandomGenerator.generateFakeStreet());
+        String street = RandomGenerator.generateFakeStreet();
+        driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox2")).sendKeys(street);
 //        8. Generate and Enter random city
-        driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox3")).sendKeys(RandomGenerator.generateFakeCity());
+        String city = RandomGenerator.generateFakeCity();
+        driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox3")).sendKeys(city);
 //        9. Generate and Enter random state
-        driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox4")).sendKeys(RandomGenerator.generateFakeState());
+        String state = RandomGenerator.generateFakeState();
+        driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox4")).sendKeys(state);
 
 
 //        10. Generate and Enter a random 5 digit zip code
@@ -155,9 +159,10 @@ driver.findElement(By.linkText("View all orders")).click();
 //        17. The placed order details appears on the first row of the orders table.
 //        Verify that the entire information contained on the row (Name, Product, Quantity, etc.) matches the previously entered information in previous steps.
 
-
+List expectedValues = List.of(fullName, street, city, state);
+        System.out.println(expectedValues);
 //        18. Log out of the application.
-        driver.findElement(By.id("ctl00_logout")).click();
+     //   driver.findElement(By.id("ctl00_logout")).click();
    //     driver.quit();
 
     }
