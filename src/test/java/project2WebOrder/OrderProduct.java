@@ -144,11 +144,21 @@ driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox1")).sendKeys(expD
         driver.findElement(By.id("ctl00_MainContent_fmwOrder_InsertButton")).click();
 
 //        15. Verify that “New order has been successfully added” message appeared on the page.
+
+        String pageSourceCode = driver.getPageSource();
+
+        Assert.assertTrue(pageSourceCode.contains("New order has been successfully added"));
+        System.out.println("The message has been verified.");
+
 //        16. Click on View All Orders link.
+driver.findElement(By.linkText("View all orders")).click();
+//        17. The placed order details appears on the first row of the orders table.
+//        Verify that the entire information contained on the row (Name, Product, Quantity, etc.) matches the previously entered information in previous steps.
 
-//        17. The placed order details appears on the first row of the orders table. Verify that the entire information contained on the row (Name, Product, Quantity, etc.) matches the previously entered information in previous steps.
+
 //        18. Log out of the application.
-
+        driver.findElement(By.id("ctl00_logout")).click();
+   //     driver.quit();
 
     }
 }
