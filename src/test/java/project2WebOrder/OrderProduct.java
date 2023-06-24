@@ -12,6 +12,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -152,7 +153,7 @@ driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox1")).sendKeys(expD
         String pageSourceCode = driver.getPageSource();
 
         Assert.assertTrue(pageSourceCode.contains("New order has been successfully added"));
-        System.out.println("The message has been verified.");
+        System.out.println("The message has been verified - \"New order has been successfully added\".");
 
 //        16. Click on View All Orders link.
 driver.findElement(By.linkText("View all orders")).click();
@@ -160,10 +161,18 @@ driver.findElement(By.linkText("View all orders")).click();
 //        Verify that the entire information contained on the row (Name, Product, Quantity, etc.) matches the previously entered information in previous steps.
 
 List expectedValues = List.of(fullName, street, city, state);
-        System.out.println(expectedValues);
-//        18. Log out of the application.
-     //   driver.findElement(By.id("ctl00_logout")).click();
-   //     driver.quit();
+
+List <String> actualValues = new ArrayList<>();
+actualValues.add(driver.findElement(By.xpath("//table[@class='SampleTable']//td[2]")).getText());
+actualValues.add(driver.findElement(By.xpath("//table[@class='SampleTable']//td[6]")).getText());
+actualValues.add(driver.findElement(By.xpath("//table[@class='SampleTable']//td[7]")).getText());
+actualValues.add(driver.findElement(By.xpath("//table[@class='SampleTable']//td[8]")).getText());
+Assert.assertEquals(actualValues, expectedValues,"something do not match");
+
+        System.out.println("The information has been verified." + expectedValues);
+//       18. Log out of the application.
+        driver.findElement(By.id("ctl00_logout")).click();
+        driver.quit();
 
     }
 }

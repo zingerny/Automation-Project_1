@@ -9,6 +9,7 @@ import org.testng.Assert;
 public class BasicTest {
     public static void main(String[] args) throws InterruptedException {
 WebDriver driver = new ChromeDriver();
+driver.manage().window().maximize();
 
 
 
@@ -32,7 +33,8 @@ driver.findElement(By.id("hideLogin")).click();
 
 //        4. Fill out the form with the required info
         WebElement username = driver.findElement(By.name("username"));
-        String user = "matrix12";
+        String user = "matrix";
+        user = user+((int)(Math.random()*100));
         driver.findElement(By.name("username")).sendKeys(user);
 
         Thread.sleep(1000);
@@ -80,7 +82,7 @@ driver.findElement(By.id("hideLogin")).click();
 //        6. Once logged in to the application, verify that the URL is:
 //        http://duotify.us-east-2.elasticbeanstalk.com/browse.php?
 
-        String expectedUrl = " http://duotify.us-east-2.elasticbeanstalk.com/browse.php?";
+        String expectedUrl = " http://duotify.us-east-2.elasticbeanstalk.com/browse.php";
 
         String actualUrl = driver.getCurrentUrl();
         System.out.println("The current url is: " + actualUrl);
@@ -101,8 +103,8 @@ driver.findElement(By.id("hideLogin")).click();
 
 //        8. Click on the username on the left navigation bar and verify the username on the main window is correct and then click logout.
 
-            WebElement navItem = driver.findElement(By.id("nameFirstAndLast"));
-            driver.findElement(By.name("navItem")).click();
+             driver.findElement(By.id("nameFirstAndLast")).click();
+
             Thread.sleep(1000);
             WebElement button = driver.findElement(By.id("button"));
             driver.findElement(By.id("rafael")).click();
@@ -112,14 +114,14 @@ driver.findElement(By.id("hideLogin")).click();
 //        9. Verify that you are logged out by verifying the URL is:
 //        http://duotify.us-east-2.elasticbeanstalk.com/register.php
 
-        driver.get(" http://duotify.us-east-2.elasticbeanstalk.com/register.php");
+        driver.get("http://duotify.us-east-2.elasticbeanstalk.com/register.php");
 
-        String expectedUrlIs = "\" http://duotify.us-east-2.elasticbeanstalk.com/register.php\"";
+        String expectedUrlIs = "http://duotify.us-east-2.elasticbeanstalk.com/register.php";
 
         String actualUrlLink = driver.getCurrentUrl();
         System.out.println("The current url is: " + actualUrlLink);
 
-        Assert.assertEquals(actualUrlLink,expectedUrlIs);
+        Assert.assertEquals(expectedUrlIs,actualUrlLink);
 
 //        10. Login using the same username and password when you signed up.
 
