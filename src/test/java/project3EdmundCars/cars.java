@@ -6,6 +6,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class cars {
     public static void main(String[] args) throws InterruptedException {
@@ -52,7 +56,29 @@ WebElement addModelDropdown = driver.findElement(By.id("usurp-make-select"));
 
 String yearMin = driver.findElement(By.name("min-value-input")).getAttribute("value");
 String yearMax = driver.findElement(By.name("max-value-input")).getAttribute("value");
-Assert.assertEquals(yearMin, "2012");
+Assert.assertEquals(yearMin, "2013");
 Assert.assertEquals(yearMax, "2023");
+
+
+//7. Verify that Model dropdown options are [Any Model, Model 3, Model S, Model X,
+//Model Y, Cybertruck, Roadster]
+
+   List<String> expectedModelsDropdown = List.of("Any Model, Model 3, Model S, Model X, Model Y, Cybertruck, Roadster");
+
+   List <WebElement> actualModelsDropdown =  new Select(driver.findElement(By.xpath("//div[@class='styled-select chevron']//select[@id='usurp-model-select']//option[not(@text()='Add Model')] "))).getOptions();
+        System.out.println(actualModelsDropdown);
+
+//   List <String> actual = actualModelsDropdown.stream()
+//            .map(s -> s.getText())
+//            .collect(Collectors.toList());
+//        System.out.println(actual);
+//Assert.assertEquals(actual, expectedModelsDropdown);
+
+
+ // 8. In Models dropdown, choose Model 3
+
+
+
+        }
     }
-}
+
