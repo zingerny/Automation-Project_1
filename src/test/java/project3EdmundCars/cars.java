@@ -1,9 +1,6 @@
 package project3EdmundCars;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -27,8 +24,14 @@ public class cars {
 //3. In the next page, clear the zipcode field and enter 22031
         driver.findElement(By.name("zip")).sendKeys(Keys.BACK_SPACE,Keys.BACK_SPACE,Keys.BACK_SPACE,Keys.BACK_SPACE,Keys.BACK_SPACE, "22031");
 Thread.sleep(500);
-//4. Check the following checkbox " Only show local listings"
-      driver.findElement(By.xpath("//span[text()='Only show local listings']")).click();
+
+
+
+
+
+
+
+
 
 //5. Choose Tesla for a make
 
@@ -36,6 +39,10 @@ WebElement addModelDropdown = driver.findElement(By.id("usurp-make-select"));
 
         new Select(driver.findElement(By.name("make"))).selectByValue("Tesla");
 
+ //4. Check the following checkbox " Only show local listings"
+        WebElement checkbox =  driver.findElement(By.xpath( "//div[@class='usurp-filter-checkbox']//label[@data-tracking-value='deliveryType~local~Only show local listings']//span[@class='checkbox checkbox-icon size-18 icon-checkbox-unchecked3 text-gray-form-controls'] "));
+        JavascriptExecutor js = ( JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", checkbox);
 
 //6.  Verify that the default selected option in Models dropdown is Any Model for Model
 //dropdown. And the default years are 2012 and 2023 in year input fields.
