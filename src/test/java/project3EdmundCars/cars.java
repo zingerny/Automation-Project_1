@@ -70,7 +70,8 @@ public class cars {
         for (WebElement option : actualDropdown) {
             actual.add(option.getText());
         }
-        System.out.println(actual);
+        System.out.println(actual); // --> [Model 3, Model 3] -????? WHY?
+       //  Exception in thread "main" java.lang.AssertionError: lists don't have the same size expected [7] but found [2]
         Assert.assertEquals(actual, expectedModelsDropdown);
 
 
